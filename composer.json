@@ -1,0 +1,8 @@
+{
+  "name": "assessment-backend-xp/crud",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
