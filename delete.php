@@ -24,12 +24,12 @@ if($page == 'Category'){
 }
 if($page == 'Product'){
   $obj = Product::getProduct($_GET['id']);
+  //VALIDAÇÃO
   if(!$obj instanceof Product){
     header('location: index.php?status=error');
     exit;
   }
 }
-
 
 //VALIDAÇÃO DO POST
 if(isset($_POST['excluir'])){

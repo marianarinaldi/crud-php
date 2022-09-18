@@ -1,3 +1,46 @@
+<?php 
+$itens ='';
+foreach ($products as $product) {
+  $itens .= '
+    <tr class="data-row">
+      <td class="data-grid-td">
+          <span class="data-grid-cell-content">'.$product->name.'</span>
+      </td>    
+      <td class="data-grid-td">
+          <span class="data-grid-cell-content">'.$product->SKU.'</span>
+      </td>
+      <td class="data-grid-td">
+          <span class="data-grid-cell-content">R$ '.$product->price.'</span>
+      </td>
+      <td class="data-grid-td">
+          <span class="data-grid-cell-content">'.$product->qtd.'</span>
+      </td>
+      <td class="data-grid-td">
+          <span class="data-grid-cell-content">'.$product->categoryName.'</span>
+      </td>    
+      <td class="data-grid-td">
+        <div class="actions">
+          <div class="action edit">
+            <a href="update.php?page=Product&id='.$product->id.'">
+              <button type="button" class="btn-edit">Edit</button>
+            </a>   
+          </div>
+          <div class="action delete">
+            <a href="delete.php?page=Product&id='.$product->id.'">
+              <button type="button" class="btn-delete">Delete</button>
+            </a>
+          </div>
+        </div>
+      </td>
+    </tr>';
+}
+
+$itens = !empty($itens) ? $itens : '<tr class="data-row">
+<td colspan="6" class="data-grid-td text-center">
+      Nenhum produto encontrado
+</td>
+</tr>';
+?>
 <body>
   <!-- Main Content -->
   <main class="content">
@@ -27,62 +70,7 @@
             <span class="data-grid-cell-content">Actions</span>
         </th>
       </tr>
-      <tr class="data-row">
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Product 1 Name</span>
-        </td>
-      
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">SKU1</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">R$ 19,90</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">100</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 1 <Br />Category 2</span>
-        </td>
-      
-        <td class="data-grid-td">
-          <div class="actions">
-            <div class="action edit"><span>Edit</span></div>
-            <div class="action delete"><span>Delete</span></div>
-          </div>
-        </td>
-      </tr>
-      <tr class="data-row">
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Product 2 Name</span>
-        </td>
-      
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">SKU2</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">R$ 59,90</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">999</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 1</span>
-        </td>
-      
-        <td class="data-grid-td">
-          <div class="actions">
-            <div class="action edit"><span>Edit</span></div>
-            <div class="action delete"><span>Delete</span></div>
-          </div>
-        </td>
-      </tr>
+      <?=$itens?>      
     </table>
   </main>
   <!-- Main Content -->

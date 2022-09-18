@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 use \App\Db\Database;
-
+use \PDO;
 class Product{
 
   /**
@@ -55,11 +55,11 @@ class Product{
     //inserir produto no banco
     $objDatabase = new Database('products');
     $this->id = $objDatabase->insert([
-      'sku' => $this->sku,
+      'SKU' => $this->SKU,
       'name' => $this->name,
       'price' => $this->price,
       'qtd' => $this->quantity,
-      'id_category' => 1,
+      'id_category' => $this->category,
       'description' => $this->description
     ]);
     
@@ -74,7 +74,7 @@ class Product{
     return (new Database('products'))->update(
       'id = '.$this->id,
       [
-        'sku' => $this->sku,
+        'SKU' => $this->SKU,
         'name' => $this->name,
         'price' => $this->price,
         'qtd' => $this->quantity,
@@ -98,8 +98,9 @@ class Product{
    * @param  string $limit
    * @return array
    */
-  public static function getProducts($where = null, $order = null, $limit = null){
-    return (new Database('products'))->select($where,$order,$limit)
+  public static function getProducts($where = null, $order = null, $limit = null, $inner = null, $fields = null){
+    
+    return (new Database('products'))->select($where,$order,$limit, $inner, $fields)
       ->fetchAll(PDO::FETCH_CLASS,self::class);
   }
 

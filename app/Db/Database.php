@@ -68,7 +68,7 @@ class Database{
     //DADOS DA QUERY
     $fields = array_keys($values);
     $binds  = array_pad([],count($fields),'?');
-
+ 
     //MONTA A QUERY
     $query = 'INSERT INTO '.$this->table.' ('.implode(',',$fields).') VALUES ('.implode(',',$binds).')';
 
@@ -84,17 +84,19 @@ class Database{
    * @param  string $where
    * @param  string $order
    * @param  string $limit
+   * @param  string $inner
    * @param  string $fields
    * @return PDOStatement
    */
-  public function select($where = null, $order = null, $limit = null, $fields = '*'){
+  public function select($where = null, $order = null, $limit = null, $inner = null, $fields = '*'){
     //DADOS DA QUERY
     $where = !empty($where) ? 'WHERE '.$where : '';
     $order = !empty($order) ? 'ORDER BY '.$order : '';
     $limit = !empty($limit) ? 'LIMIT '.$limit : '';
+    $inner = !empty($inner) ? $inner : '';
 
     //MONTA A QUERY
-    $query = 'SELECT '.$fields.' FROM '.$this->table.' '.$where.' '.$order.' '.$limit;
+    $query = 'SELECT '.$fields.' FROM '.$this->table.' as a '.$inner.' '.$where.' '.$order.' '.$limit;
 
     //EXECUTA A QUERY
     return $this->execute($query);

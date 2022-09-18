@@ -2,11 +2,16 @@
 require __DIR__ . '/vendor/autoload.php';
 use \App\Entity\Category;
 
+define('TITLE','New');
+
 if(isset($_POST['category-name'],$_POST['category-code'])){
-  $objCategory = new Category;
-  $objCategory->name = $_POST['category-name'];
-  $objCategory->code = $_POST['category-code'];
-  $objCategory->create();    
+  $obj = new Category;
+  $obj->name = $_POST['category-name'];
+  $obj->code = $_POST['category-code'];
+  $obj->create();    
+  
+  header('location: readCategory.php?status=success');
+  exit;
 }
 
 include __DIR__ .'/includes/header.php';

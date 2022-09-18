@@ -1,4 +1,3 @@
-
 <?php 
   $itens = '';
   foreach($categories as $category){
@@ -12,14 +11,14 @@
         </td>      
         <td class="data-grid-td">
           <div class="actions">          
-          <div class="action edit">
-            <a href="update.php?page=Category&id='.$category->id.'">
-              <button type="button" class="btn btn-primary">Edit</button>
-            </a>            
+            <div class="action edit">
+              <a href="update.php?page=Category&id='.$category->id.'">
+                <button type="button" class="btn-edit">Edit</button>
+              </a>            
             </div>
             <div class="action delete">
               <a href="delete.php?page=Category&id='.$category->id.'">
-              <button type="button" class="btn btn-danger">Excluir</button>
+                <button type="button" class="btn-delete">Delete</button>
               </a>
             </div>
           </div>

@@ -187,6 +187,26 @@ body {
       text-decoration: none;
     }
 
+    .btn-edit {
+      background-color: #01912c;
+      border-color: #01912c;
+      color: #fff;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+      padding: 8px 27px;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .btn-delete {
+      background-color: #f50919;
+      border-color: #f50919;
+      color: #fff;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+      padding: 8px 20px;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
     .data-grid {
       border: none;
       font-size: 1.3rem;
