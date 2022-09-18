@@ -1,48 +1,49 @@
-# Você quer ser um desenvolvedor Backend na Web Jump?
-Criamos esse teste para avaliar seus conhecimentos e habilidades como desenvolvedor backend.
+# CRUD de gerenciamento de produtos com PHP orientado a objetos, PDO e MySQL 
+## Banco de dados
+Crie um banco de dados e execute as instruções SQLs abaixo para criar o database chamado `CRUD` e as tabelas `category` e `products`:
+```sql
+ START TRANSACTION;
 
-# O teste
-O desafio é desenvolver um sistema de gerenciamento de produtos. Esse sistema será composto de um cadastro de produtos e categorias. Os requisitos desse sistema estão listados nos tópicos abaixo.
-Não existe certo ou errado, queremos saber como você se sai em situações reais como esse desafio.
+	CREATE DATABASE crud;
 
-# Instruções
-- O foco principal do nosso teste é o backend. Para facilitar você poderá utilizar os arquivos html  disponíveis no diretório assets
-- Crie essa aplicação como se fosse uma aplicação real, que seria utilizada pelo WebJump
-- Fique à vontade para usar bibliotecas/componentes externos (composer)
-- Não utilize nenhum Framework, tais como Laravel, Lumen ou Symphony
-- Seguir princípios **SOLID** 
-- Utilize boas práticas de programação
-- Utilize boas práticas de git
-- Documentar como rodar o projeto
-- Crie uma documentação simples comentando sobre as tecnologias, versões e soluções adotadas
+	USE crud;
 
-# Requisitos
-- O sistema deverá ser desenvolvido utilizando a linguagem PHP (de preferência a versão mais nova) ou outra linguagem se assim foi especificado para sua avaliação por nossa equipe.
-- Você deve criar um CRUD que permita cadastrar as seguintes informações:
-	- **Produto**: Nome, SKU (Código), preço, descrição, quantidade e categoria (cada produto pode conter uma ou mais categorias)
-	- **Categoria**: Código e nome.
-- Salvar as informações necessárias em um banco de dados (relacional ou não), de sua escolha
+	CREATE TABLE `category` (
+		`id` INT NOT NULL AUTO_INCREMENT,
+		`code` varchar(255) NOT NULL,
+		`name` varchar(255) NOT NULL,
+		PRIMARY KEY (id)
+	) ENGINE=InnoDB ;
 
-# Opcionais
-- Gerar logs das ações
-- Testes automatizados com informação da cobertura de testes
-- Upload de imagem no cadastro de produtos
+	CREATE TABLE `products` (
+		`id` INT NOT NULL AUTO_INCREMENT,
+		`name` varchar(255) NOT NULL,
+		`SKU` varchar(255) NOT NULL,
+		`price` DECIMAL(10,2),
+		`description` varchar(255) NOT NULL,
+		`qtd` INT NOT NULL,
+		`id_category` INT,
+		`name_image` varchar(255),
+		PRIMARY KEY (id),
+		FOREIGN KEY (id_category) REFERENCES category(id) ON DELETE CASCADE
+	) ENGINE=InnoDB ;
 
-# O que será avaliado
-- Estrutura e organização do código e dos arquivos
-- Soluções adotadas
-- Tecnologias utilizadas
-- Qualidade
-- Padrões PSR, Design Patterns
-- Enfim, tudo será observado e levado em conta
 
-# Como iniciar o desenvolvimento
-- **Fork** esse repositório na sua conta do BitBucket.
-- Crie uma branch com o nome **desafio**
+	COMMIT;
+```
 
-# Como enviar seu teste
-Envie um email para [carreira@webjump.com.br] com o link do seu repositório.
+## Configuração
+As credenciais do banco de dados estão no arquivo `./app/Db/Database.php` e você deve alterar para as configurações do seu ambiente (HOST, NAME, USER e PASS).
 
-O repositório do teste precisa ser público. 
+## Composer
+Para a aplicação funcionar, é necessário rodar o Composer para que sejam criados os arquivos responsáveis pelo autoload das classes.
 
-Qualquer dúvida sobre o teste, fique a vontade para entrar em contato conosco.
+Caso não tenha o Composer instalado, baixe pelo site oficial: [https://getcomposer.org/download](https://getcomposer.org/download/)
+
+Para rodar o composer, basta acessar a pasta do projeto e executar o comando abaixo em seu terminal:
+```shell
+ composer install
+```
+
+Após essa execução uma pasta com o nome `vendor` será criada na raiz do projeto e você já poderá acessar pelo seu navegador.
+

@@ -20,7 +20,7 @@ foreach ($categories as $category) {
   <!-- Main Content -->
   <main class="content">
     <h1 class="title new-item"><?= TITLE ?> Product</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
       <div class="input-field">
         <label for="sku" class="label">Product SKU</label>
         <input type="text" id="sku" name="sku" class="input-text" value="<?= isset($obj->SKU) ? $obj->SKU : ''  ?>" required/> 

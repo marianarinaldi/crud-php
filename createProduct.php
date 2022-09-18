@@ -7,7 +7,7 @@ use \App\File\Upload;
 
 define('TITLE','New');
 
-if(isset($_POST['sku'],$_POST['name'],$_POST['price'],$_POST['quantity'],$_POST['category'],$_POST['description'], $_FILES['imageProduct'])){
+if(isset($_POST['sku'],$_POST['name'],$_POST['price'],$_POST['quantity'],$_POST['category'],$_POST['description'])){
   
   $objProduct = new Product;
   $objProduct->SKU = $_POST['sku'];
@@ -17,12 +17,19 @@ if(isset($_POST['sku'],$_POST['name'],$_POST['price'],$_POST['quantity'],$_POST[
   $objProduct->category = $_POST['category'];
   $objProduct->description = $_POST['description'];
 
-  $objUpload = new Upload($_FILES['imageProduct']);
-  $sucesso = $objUpload->upload(__DIR__.'/assets/images/product'.false);
+  //INSTANCIA DE UPLOAD
+  $objUpload = new Upload($_FILES['imageProduct']);  
+  
+  // //MOVE OS ARQUIVOS DE UPLOAD  
+  $sucesso = $objUpload->upload(__DIR__.'/assets/images/product');
+  $name_image = $objUpload->getBaseName();
+  
   if($sucesso){
-
-    $objProduct->image = $objUpload->getBaseName();
+    $objProduct->name_image = $name_image;
+  }else{
+    $objProduct->name_image = '';
   }
+
   $objProduct->create();  
 
   header('location: readProduct.php?status=success');

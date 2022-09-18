@@ -4,9 +4,13 @@ $itens ='';
 foreach ($products as $product) {
   $itens .= '
     <li>
-      <div class="product-image">
-        <img src="../assets/images/product/tenis-runner-bolt.png" layout="responsive" width="164" height="145" alt="'.$product->name.'" />
-      </div>
+      <div class="product-image">';
+  if($product->name_image){
+    $itens .= ' <img src="../assets/images/product/'.$product->name_image.'" layout="responsive" width="164" height="145" alt="'.$product->name.'" />';
+  }else{
+    $itens .= ' <img src="../assets/images/no-photo.jpg" layout="responsive" width="164" height="145" alt="no-photo" />';
+  }
+  $itens .= ' </div>
       <div class="product-info">
         <div class="product-name">
           <span>'.$product->name.'</span>

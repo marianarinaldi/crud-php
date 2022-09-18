@@ -19,6 +19,7 @@ CREATE TABLE `products` (
   `description` varchar(255) NOT NULL,
   `qtd` INT NOT NULL,
   `id_category` INT,
+  `name_image` varchar(255),
   PRIMARY KEY (id),
   FOREIGN KEY (id_category) REFERENCES category(id) ON DELETE CASCADE
 ) ENGINE=InnoDB ;

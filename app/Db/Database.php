@@ -11,7 +11,7 @@ class Database{
   const db_name = 'crud';
   const db_host = 'localhost';
   const db_user = 'root';
-  const db_pass = '@123';
+  const db_pass = '';
   /**
    * Nome da tabela a ser manipulada
    * @var string

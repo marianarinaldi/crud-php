@@ -43,7 +43,7 @@ class Upload{
   */
   public function __construct($file){
     $this->type = $file['type'];
-    $this->tmpName = $file['tmpName'];
+    $this->tempName = $file['tmp_name'];
     $this->error = $file['error'];
     
     $info = pathinfo($file['name']);
@@ -99,6 +99,7 @@ class Upload{
    * @return boolean
    */
   public function upload($dir, $overwrite = true){
+
     //VERIFICAR ERROR
     if($this->error != 0) return false;
 

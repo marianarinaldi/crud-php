@@ -10,7 +10,8 @@ $fields =  ' a.id
             ,a.description
             ,a.qtd
             ,c.name as categoryName
-            ,a.id_category';
+            ,a.id_category
+            ,a.name_image';
 
 $inner = 'INNER JOIN category c ON c.id = a.id_category';
 

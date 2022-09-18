@@ -47,11 +47,16 @@ class Product{
   */
   public $description;
   /**
+  * Nome da Imagem do produto
+  * @var string
+  */
+  public $name_image;
+  /**
    * Método responsável por cadastrar Produto
    * @return boolean
    */
   public function create(){
-
+    
     //inserir produto no banco
     $objDatabase = new Database('products');
     $this->id = $objDatabase->insert([
@@ -60,7 +65,8 @@ class Product{
       'price' => $this->price,
       'qtd' => $this->quantity,
       'id_category' => $this->category,
-      'description' => $this->description
+      'description' => $this->description,
+      'name_image' => $this->name_image
     ]);
     
     //retornar sucesso
@@ -79,7 +85,8 @@ class Product{
         'price' => $this->price,
         'qtd' => $this->quantity,
         'id_category' => $this->category,
-        'description' => $this->description
+        'description' => $this->description,
+        'name_image' => $this->name_image
       ]);
   }
 
